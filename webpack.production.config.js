@@ -6,7 +6,9 @@ const webpack = require('webpack');
 module.exports = {
   optimization: {
     splitChunks:{
-      chunks: "all"
+      chunks: "all",
+      minSize: 10000,
+      automaticNameDelimiter: "_"
     }
   },
   entry: {

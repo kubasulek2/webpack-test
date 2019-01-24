@@ -1,4 +1,5 @@
-import fridge from '../../fridge.jpg'
+import fridge from '../../fridge.jpg';
+
 
  class addImage {
   render() {
