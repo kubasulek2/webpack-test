@@ -1,3 +1,4 @@
+import './heading.scss'
 class Heading {
   render(){
     const body = document.querySelector('body');
@@ -5,6 +6,9 @@ class Heading {
     const headerText = document.createElement("h1");
 
     header.classList.add("header");
+    headerText.innerText = "this is heading";
+    header.appendChild(headerText);
+    body.appendChild(header);
 
   }
 }
