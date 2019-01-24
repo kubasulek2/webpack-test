@@ -1,0 +1,13 @@
+.btn {
+  width: 200px;
+  border: none;
+  background: darkcyan;
+  color: wheat;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 2rem;
+  outline: none; }
+
+p {
+  color: darkcyan; }
+

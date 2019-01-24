@@ -1,0 +1,15 @@
+$color: darkcyan;
+$font-size: 2rem;
+.btn{
+    width: 200px;
+    border: none;
+    background: darkcyan;
+    color: wheat;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: $font-size;
+    outline: none;
+}
+p{
+    color: $color;
+}
