@@ -1,17 +1,24 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const miniCss = require('mini-css-extract-plugin');
 const cleanWebpack = require('clean-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 module.exports = {
-  devtool: "cheap-eval-source-map",
-  entry: './src/index.js',
-  mode: 'none',
+  optimization: {
+    splitChunks:{
+      chunks: "all"
+    }
+  },
+  entry: {
+    app: './src/index.js',
+    image: './src/image.js'
+  },
+  mode: 'production',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: "",
 
-filename: "bundle.[hash].js"
+filename: "[name].[hash].js"
   },
   module: {
     rules: [
@@ -29,36 +36,12 @@ filename: "bundle.[hash].js"
           },
           {
             loader: 'css-loader',
-            options:{
-              sourceMap: true
-            }
           },
           {
             loader: "postcss-loader"
           },
           {
             loader: 'sass-loader',
-            options:{
-              sourceMap: true
-            }
-          }
-        ],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: miniCss.loader
-          },
-          {
-            loader: 'css-loader',
-            options:{
-              sourceMap: true
-            }
-          },
-          {
-            loader: "postcss-loader"
           }
         ],
         exclude: /node_modules/
@@ -78,15 +61,19 @@ filename: "bundle.[hash].js"
 
   },
   plugins: [
-    new UglifyJsPlugin({
-      sourceMap: true
-    }),
     new miniCss({
-      filename: 'styles.[hash].css'
+      filename: '[name].[hash].css'
     }),
     new cleanWebpack('dist'),
     new htmlWebpackPlugin({
+      filename: 'index.html',
       template: './index.html',
-    })
+      chunks: ['app', 'vendors~app~image'],
+    }),
+    new htmlWebpackPlugin({
+      filename: 'image.html',
+      template: './index.html',
+      chunks: ['image','vendors~app~image'],
+    }),
   ]
 };

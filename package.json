@@ -10,14 +10,14 @@
     "maintained node versions",
     "not dead"
   ],
-  "repository":  {
-  "type": "git",
-  "url": "git+https://github.com/kubasulek2/webpack-test"
-},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubasulek2/webpack-test"
+  },
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "dev": "webpack-dev-server --config webpack.dev.config.js --open --hot",
+    "build": "webpack --config webpack.production.config.js"
   },
   "keywords": [],
   "author": "kubasulek2 <kubasulek2@gmail.com>",
@@ -41,5 +41,8 @@
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
   }
 }
