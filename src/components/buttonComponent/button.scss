@@ -9,6 +9,7 @@ $font-size: 2rem;
     margin: 1rem;
     font-size: $font-size;
     outline: none;
+    user-select: none;
 }
 p{
     color: $color;

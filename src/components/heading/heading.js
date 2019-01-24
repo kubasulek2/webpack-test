@@ -9,6 +9,7 @@ class Heading {
     headerText.innerText = "this is heading";
     header.appendChild(headerText);
     body.appendChild(header);
+    console.log('aaa');
 
   }
 }

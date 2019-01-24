@@ -1,15 +1,17 @@
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const miniCss = require('mini-css-extract-plugin');
+const cleanWebpack = require('clean-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: "cheap-eval-source-map",
   entry: './src/index.js',
   mode: 'none',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: "dist/",
+    publicPath: "",
 
-filename: "bundle.js"
+filename: "bundle.[hash].js"
   },
   module: {
     rules: [
@@ -22,14 +24,44 @@ filename: "bundle.js"
       {
         test: /\.scss$/,
         use: [
-          miniCss.loader,'css-loader','sass-loader'
-        ]
+          {
+            loader: miniCss.loader
+          },
+          {
+            loader: 'css-loader',
+            options:{
+              sourceMap: true
+            }
+          },
+          {
+            loader: "postcss-loader"
+          },
+          {
+            loader: 'sass-loader',
+            options:{
+              sourceMap: true
+            }
+          }
+        ],
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
         use: [
-          miniCss.loader,'css-loader'
-        ]
+          {
+            loader: miniCss.loader
+          },
+          {
+            loader: 'css-loader',
+            options:{
+              sourceMap: true
+            }
+          },
+          {
+            loader: "postcss-loader"
+          }
+        ],
+        exclude: /node_modules/
       },
       {
         test: /\.js$/,
@@ -50,7 +82,11 @@ filename: "bundle.js"
       sourceMap: true
     }),
     new miniCss({
-      filename: 'styles.css'
+      filename: 'styles.[hash].css'
+    }),
+    new cleanWebpack('dist'),
+    new htmlWebpackPlugin({
+      template: './index.html',
     })
   ]
 };
