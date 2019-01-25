@@ -1,0 +1,23 @@
+.btn {
+  width: 200px;
+  border: none;
+  background: darkcyan;
+  color: wheat;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 2rem;
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+p {
+  color: darkcyan; }
+
+body header {
+  width: 100%;
+  text-align: center; }
+  body header h1 {
+    color: indianred; }
+
