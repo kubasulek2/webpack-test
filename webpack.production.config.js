@@ -2,13 +2,11 @@ const path = require('path');
 const miniCss = require('mini-css-extract-plugin');
 const cleanWebpack = require('clean-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 module.exports = {
   optimization: {
-    splitChunks:{
+    splitChunks: {
       chunks: "all",
       minSize: 10000,
-      automaticNameDelimiter: "_"
     }
   },
   entry: {
@@ -37,13 +35,13 @@ filename: "[name].[hash].js"
             loader: miniCss.loader
           },
           {
-            loader: 'css-loader',
+            loader: 'css-loader'
           },
           {
             loader: "postcss-loader"
           },
           {
-            loader: 'sass-loader',
+            loader: 'sass-loader'
           }
         ],
         exclude: /node_modules/
@@ -76,6 +74,6 @@ filename: "[name].[hash].js"
       filename: 'image.html',
       template: './index.html',
       chunks: ['image','vendors~app~image'],
-    }),
+    })
   ]
 };

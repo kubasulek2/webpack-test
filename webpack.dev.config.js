@@ -1,6 +1,5 @@
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const cleanWebpack = require('clean-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 module.exports = {
@@ -8,8 +7,7 @@ module.exports = {
   optimization: {
     splitChunks:{
       chunks: "all",
-      minSize: 10000,
-      automaticNameDelimiter: "_"
+      minSize: 10000
     }
   },
   entry: {
@@ -72,7 +70,6 @@ module.exports = {
     new UglifyJsPlugin({
       sourceMap: true
     }),
-    new cleanWebpack('dist'),
     new htmlWebpackPlugin({
       filename: 'index.html',
       template: './index.html',
